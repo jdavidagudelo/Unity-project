@@ -52,6 +52,12 @@
      <Compile Include="Assets\Pedometer.cs" />
      <Compile Include="Assets\PedometerAdvanced.cs" />
      <Compile Include="Assets\SpeedAndDistance.cs" />
+     <None Include="Assets\Plugins\Android\res\values\styles.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\notification_one.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\notification_two.xml" />
+     <None Include="Assets\Plugins\Android\res\values-v21\styles.xml" />
+     <None Include="Assets\Plugins\Android\res\values\strings.xml" />
+     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\ReadMe.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
