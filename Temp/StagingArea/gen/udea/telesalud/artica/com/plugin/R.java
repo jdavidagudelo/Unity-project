@@ -15,20 +15,26 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int text1=0x7f060000;
-        public static final int text2=0x7f060001;
+        public static final int text1=0x7f080000;
+        public static final int text2=0x7f080001;
+    }
+    public static final class integer {
+        public static final int google_play_services_version=0x7f050000;
     }
     public static final class layout {
         public static final int notification_one=0x7f030000;
         public static final int notification_two=0x7f030001;
     }
+    public static final class raw {
+        public static final int notification=0x7f040000;
+    }
     public static final class string {
-        public static final int app_name=0x7f040000;
+        public static final int app_name=0x7f060000;
     }
     public static final class style {
         /**  Base application theme. 
  Customize your theme here. 
          */
-        public static final int AppTheme=0x7f050000;
+        public static final int AppTheme=0x7f070000;
     }
 }

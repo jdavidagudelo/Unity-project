@@ -48,20 +48,34 @@
   <ItemGroup>
      <Compile Include="Assets\AndroidPlugin.cs" />
      <Compile Include="Assets\CallJavaCode.cs" />
-     <Compile Include="Assets\NotificationsPlugin.cs" />
      <Compile Include="Assets\Pedometer.cs" />
      <Compile Include="Assets\PedometerAdvanced.cs" />
      <Compile Include="Assets\SpeedAndDistance.cs" />
      <None Include="Assets\Plugins\Android\res\values\styles.xml" />
      <None Include="Assets\Plugins\Android\res\layout\notification_one.xml" />
      <None Include="Assets\Plugins\Android\res\layout\notification_two.xml" />
+     <None Include="Assets\Plugins\Android\google-play-services_lib\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\res\values-v21\styles.xml" />
      <None Include="Assets\Plugins\Android\res\values\strings.xml" />
+     <None Include="Assets\Plugins\Android\AndroidManifest_GameThrive_ADM_Template.xml" />
+     <None Include="Assets\Plugins\Android\AndroidManifest_GameThrive_GCM_Template.xml" />
+     <None Include="Assets\Plugins\Android\google-play-services_lib\README.txt" />
+     <None Include="Assets\Plugins\Android\google-play-services_lib\proguard.txt" />
+     <None Include="Assets\Plugins\Android\google-play-services_lib\res\values\version.xml" />
      <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+     <None Include="Assets\Plugins\Android\AndroidManifest_GameThrive_ADM_AND_GCM_Template.xml" />
+     <None Include="Assets\Plugins\Android\google-play-services_lib\lint.xml" />
      <None Include="Assets\ReadMe.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>
+ <Reference Include="GameThriveSDK">
+ <HintPath>C:/users/interoperabilidad/My Documents/UnityLocation/Assets/Plugins/GameThriveSDK.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
+      <Project>{1AE89C98-AC39-804F-DA8B-35CD699065B4}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -46,28 +46,33 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Plugins\Android\AndroidPlugins.cs" />
+     <Compile Include="Assets\Plugins\GameThrive\Example\GameControllerExample.cs" />
+     <Compile Include="Assets\Plugins\GameThrive\GameThrive.cs" />
+     <Compile Include="Assets\Plugins\GameThrive\GameThriveAndroid.cs" />
+     <Compile Include="Assets\Plugins\GameThrive\GameThriveIOS.cs" />
+     <Compile Include="Assets\Plugins\GameThrive\GameThrivePlatform.cs" />
+     <Compile Include="Assets\Plugins\GameThrive\GameThriveWP.cs" />
+     <Compile Include="Assets\Plugins\GameThrive\MiniJSON.cs" />
      <None Include="Assets\Plugins\Android\res\values\styles.xml" />
      <None Include="Assets\Plugins\Android\res\layout\notification_one.xml" />
      <None Include="Assets\Plugins\Android\res\layout\notification_two.xml" />
-     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\google-play-services_lib\AndroidManifest.xml" />
-     <None Include="Assets\Plugins\Android\res\values-w820dp\dimens.xml" />
      <None Include="Assets\Plugins\Android\res\values-v21\styles.xml" />
      <None Include="Assets\Plugins\Android\res\values\strings.xml" />
      <None Include="Assets\Plugins\Android\AndroidManifest_GameThrive_ADM_Template.xml" />
-     <None Include="Assets\Plugins\Android\res\menu\my.xml" />
-     <None Include="Assets\Plugins\Android\res\values\dimens.xml" />
-     <None Include="Assets\Plugins\Android\AndroidManifest_GameThrive_ADM_AND_GCM_Template.xml" />
-     <None Include="Assets\Plugins\Android\google-play-services_lib\README.txt" />
      <None Include="Assets\Plugins\Android\AndroidManifest_GameThrive_GCM_Template.xml" />
-     <None Include="Assets\Plugins\Android\res\layout\activity_my.xml" />
+     <None Include="Assets\Plugins\Android\google-play-services_lib\README.txt" />
      <None Include="Assets\Plugins\Android\google-play-services_lib\proguard.txt" />
      <None Include="Assets\Plugins\Android\google-play-services_lib\res\values\version.xml" />
+     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+     <None Include="Assets\Plugins\Android\AndroidManifest_GameThrive_ADM_AND_GCM_Template.xml" />
      <None Include="Assets\Plugins\Android\google-play-services_lib\lint.xml" />
      <None Include="Assets\ReadMe.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="GameThriveSDK">
+ <HintPath>C:/users/interoperabilidad/My Documents/UnityLocation/Assets/Plugins/GameThriveSDK.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

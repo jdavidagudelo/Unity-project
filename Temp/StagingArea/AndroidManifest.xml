@@ -1,44 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="udea.telesalud.artica.com.plugin" android:versionName="1.0" android:versionCode="1" android:installLocation="preferExternal">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="udea.telesalud.artica.com.plugin" android:installLocation="preferExternal">
   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-  <application android:allowBackup="true" android:label="@string/app_name" android:icon="@drawable/ic_launcher" android:theme="@style/AppTheme" android:debuggable="false">
-    <activity android:name="com.unity3d.player.UnityPlayerActivity" android:label="@string/app_name" android:screenOrientation="fullSensor" android:launchMode="singleTask" android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale">
+  <application android:allowBackup="true" android:icon="@drawable/ic_launcher" android:label="@string/app_name" android:theme="@style/AppTheme" android:debuggable="false">
+    <activity android:label="@string/app_name" android:name="com.unity3d.player.UnityPlayerActivity" android:screenOrientation="fullSensor" android:launchMode="singleTask" android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:name=".NotificationOne" android:label="Details of Notification One" android:parentActivityName="com.unity3d.player.UnityPlayerActivity">
+    <activity android:label="Details of Notification One" android:name="udea.telesalud.artica.com.plugin.NotificationOne" android:parentActivityName="com.unity3d.player.UnityPlayerActivity">
       <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.unity3d.player.UnityPlayerActivity" />
     </activity>
-    <activity android:name=".NotificationOpenedActivity" android:label="Notification opened">
+    <activity android:label="Notification opened" android:name="udea.telesalud.artica.com.plugin.NotificationOpenedActivity">
     </activity>
-    <activity android:name=".NotificationTwo" android:label="Details of Notification Two" android:parentActivityName="com.unity3d.player.UnityPlayerActivity">
+    <activity android:label="Details of Notification Two" android:name="udea.telesalud.artica.com.plugin.NotificationTwo" android:parentActivityName="com.unity3d.player.UnityPlayerActivity">
       <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.unity3d.player.UnityPlayerActivity" />
     </activity>
-    <service android:name=".MyService" android:exported="false">
+    <service android:exported="false" android:name="udea.telesalud.artica.com.plugin.MyService">
     </service>
-    <service android:name=".AlarmService" android:exported="false">
+    <service android:exported="false" android:name="udea.telesalud.artica.com.plugin.AlarmService">
     </service>
-    <receiver android:name=".AutoStartReceiver">
+    <receiver android:name="udea.telesalud.artica.com.plugin.AutoStartReceiver">
       <intent-filter>
         <action android:name="android.intent.action.BOOT_COMPLETED" />
       </intent-filter>
     </receiver>
-    <receiver android:name=".AlarmReceiver" android:exported="true">
+    <receiver android:exported="true" android:name="udea.telesalud.artica.com.plugin.AlarmReceiver">
       <intent-filter>
         <action android:name="udea.telesalud.artica.com.plugin.START_ALARM">
         </action>
       </intent-filter>
     </receiver>
+    <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+    <activity android:label="@string/app_name" android:name="com.unity3d.player.UnityPlayerNativeActivity" android:screenOrientation="fullSensor" android:launchMode="singleTask" android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+      <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
+      <meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="false" />
+    </activity>
+    <activity android:name="com.gamethrive.NotificationOpenedActivity" />
+    <receiver android:name="com.gamethrive.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+      <intent-filter>
+        <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+        <category android:name="com.hiptic.GameThriveExample3" />
+      </intent-filter>
+    </receiver>
+    <service android:name="com.gamethrive.GcmIntentService" />
   </application>
-  <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="20" />
   <uses-feature android:glEsVersion="0x00020000" />
+  <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="19" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+  <uses-permission android:name="android.permission.VIBRATE" />
+  <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+  <permission android:name="com.hiptic.GameThriveExample3.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+  <uses-permission android:name="com.hiptic.GameThriveExample3.permission.C2D_MESSAGE" />
   <uses-feature android:name="android.hardware.location.gps" android:required="false" />
   <uses-feature android:name="android.hardware.sensor.accelerometer" />
   <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
   <uses-feature android:name="android.hardware.touchscreen.multitouch" android:required="false" />
   <uses-feature android:name="android.hardware.touchscreen.multitouch.distinct" android:required="false" />
-  <uses-permission android:name="android.permission.WAKE_LOCK" />
 </manifest>

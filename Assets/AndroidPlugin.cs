@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 public class AndroidPlugin : MonoBehaviour {
 	public Text text;
 #if UNITY_ANDROID
@@ -9,6 +10,8 @@ public class AndroidPlugin : MonoBehaviour {
 #endif
 	// Use this for initialization
 	void Start () {
+		
+		GameThrive.Init("7159e91c-aae9-11e4-a836-1b616324191f", "1038037127124", HandleNotification, true);
 #if UNITY_ANDROID
 		try{
 		if (toastExample == null) {
@@ -35,7 +38,11 @@ public class AndroidPlugin : MonoBehaviour {
 		}
 #endif
 	}
-#if UNITY_ANDROID
+	private static void HandleNotification(string message, Dictionary<string, object> additionalData, bool isActive) {
+		print("GameControllerExample:HandleNotification");
+		print(message);
+	}
+	#if UNITY_ANDROID
 	public void showSimpleMessage()
 	{
 		activityContext.Call("runOnUiThread", new AndroidJavaRunnable(()=>
