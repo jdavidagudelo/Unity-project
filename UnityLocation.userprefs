@@ -1,12 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\AndroidPlugin.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MAPNAV\Scripts\MapNav.js">
     <Files>
-      <File FileName="Assets\AndroidPlugin.cs" Line="16" Column="34" />
-      <File FileName="Assets\Plugins\Android\AndroidManifest.xml" Line="24" Column="16" />
-      <File FileName="Assets\Plugins\Android\AndroidManifest_GameThrive_ADM_AND_GCM_Template.xml" Line="1" Column="1" />
-      <File FileName="Assets\Plugins\Android\AndroidManifest_GameThrive_ADM_Template.xml" Line="72" Column="12" />
-      <File FileName="Assets\Plugins\GameThrive\MiniJSON.cs" Line="75" Column="16" />
+      <File FileName="Assets\MAPNAV\Scripts\MapNav.js" Line="38" Column="26" />
+      <File FileName="Assets\MAPNAV\Scripts\SimpleRoute.js" Line="9" Column="43" />
+      <File FileName="Assets\Plugins\SimpleJSON.cs" Line="550" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -46,13 +46,23 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\ActivityButton.cs" />
+     <Compile Include="Assets\ActivityList.cs" />
      <Compile Include="Assets\AndroidPlugin.cs" />
      <Compile Include="Assets\CallJavaCode.cs" />
+     <Compile Include="Assets\CreateScrollList.cs" />
+     <Compile Include="Assets\JSON Tests\CSharp\Test_CSharp.cs" />
+     <Compile Include="Assets\JSONObject\JSONObject.cs" />
+     <Compile Include="Assets\JSONObject\JSONTemplates.cs" />
+     <Compile Include="Assets\JSONObject\VectorTemplates.cs" />
+     <Compile Include="Assets\LoadList.cs" />
      <Compile Include="Assets\Pedometer.cs" />
      <Compile Include="Assets\PedometerAdvanced.cs" />
+     <Compile Include="Assets\RunActivity.cs" />
      <Compile Include="Assets\SpeedAndDistance.cs" />
      <None Include="Assets\Plugins\Android\res\values\styles.xml" />
      <None Include="Assets\Plugins\Android\res\layout\notification_one.xml" />
+     <None Include="Assets\JSONObject\readme.txt" />
      <None Include="Assets\Plugins\Android\res\layout\notification_two.xml" />
      <None Include="Assets\Plugins\Android\google-play-services_lib\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\res\values-v21\styles.xml" />
@@ -62,6 +72,7 @@
      <None Include="Assets\Plugins\Android\google-play-services_lib\README.txt" />
      <None Include="Assets\Plugins\Android\google-play-services_lib\proguard.txt" />
      <None Include="Assets\Plugins\Android\google-play-services_lib\res\values\version.xml" />
+     <None Include="Assets\JSON Tests\TroubleShoot.txt" />
      <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\AndroidManifest_GameThrive_ADM_AND_GCM_Template.xml" />
      <None Include="Assets\Plugins\Android\google-play-services_lib\lint.xml" />
@@ -71,6 +82,9 @@
  </Reference>
  <Reference Include="GameThriveSDK">
  <HintPath>C:/users/interoperabilidad/My Documents/UnityLocation/Assets/Plugins/GameThriveSDK.dll</HintPath>
+ </Reference>
+ <Reference Include="ICSharpCode.SharpZipLib">
+ <HintPath>C:/users/interoperabilidad/My Documents/UnityLocation/Assets/Plugins/ICSharpCode.SharpZipLib.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
