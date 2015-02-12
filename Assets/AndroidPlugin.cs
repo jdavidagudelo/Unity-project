@@ -14,8 +14,9 @@ public class AndroidPlugin : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		GameThrive.Init("7159e91c-aae9-11e4-a836-1b616324191f", "1038037127124", HandleNotification, true);
-		staticText = text;
+
 		#if UNITY_ANDROID && !UNITY_EDITOR
+		staticText = text;
 		try{
 			if (androidPlugin == null) {
 				using(AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
@@ -46,7 +47,7 @@ public class AndroidPlugin : MonoBehaviour {
 		print("GameControllerExample:HandleNotification");
 		print(message);
 	}
-	public static void showSimpleMessage(string message)
+	public void showSimpleMessage(string message)
 	{
 		load ();
 		#if UNITY_ANDROID && !UNITY_EDITOR
@@ -67,7 +68,7 @@ public class AndroidPlugin : MonoBehaviour {
 		}));
 		#endif
 	}
-	public static void showSimpleMessage()
+	public void showSimpleMessage()
 	{
 		load ();
 		#if UNITY_ANDROID && !UNITY_EDITOR
@@ -150,8 +151,7 @@ public class AndroidPlugin : MonoBehaviour {
 			try{
 				float distance = androidPlugin.Call<float>("getCurrentDistance");
 				long time = androidPlugin.Call<long>("getCurrentTime");
-				string location = androidPlugin.Call<string>("getLocation");
-					staticText.text = "Distancia = "+distance+" meters, Tiempo: "+time+" milliseconds. Location: "+location;
+				staticText.text = "Distancia = "+distance+" meters, Tiempo: "+time+" milliseconds.";
 			}
 			catch(UnityException ex){
 					staticText.text = ex.Message.ToString();

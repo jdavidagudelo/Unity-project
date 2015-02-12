@@ -46,7 +46,7 @@ private var newUserPos : Vector3;
 private var currentUserPos : Vector3;
 private var download : float;
 private var www : WWW;
-var url = ""; 
+public var url = ""; 
 private var longitude : double;
 private var latitude : double;
 private var rect : Rect;
@@ -61,9 +61,13 @@ private var tempLon :double;
 private var  androidPlugin :AndroidJavaObject;
 private  var activityContext :AndroidJavaObject;
 private var lastLocation :AndroidJavaObject;
-var markers:String = "";
-var pointsParams : String = "";
-
+var markers:String = "";//parametro usado en la URL para marcadores
+var pointsParams : String = "";//parametro usado para rutas
+private var markerObjects : ArrayList = ArrayList();//Lista de marcadores
+public var markerPrefab:GameObject;//Prefab usado para marcar lugares
+public var placesName: String = "bar";//nombre de lugares cercanos
+public var placesRadius :float = 200.0;//Radio de los lugares a los que se puede acceder
+public var useNativeGps :boolean = true;
 function Awake(){
 	//Set the map's tag to GameController
 	transform.tag="GameController";
@@ -92,15 +96,38 @@ function Awake(){
 }
 public function setContext()
 {
+	try{
 	androidPlugin.Call("setContext", activityContext);
+	}
+	catch(e)
+	{
+		text.text = e.Message;
+	}
+}
+public var text : UnityEngine.UI.Text;
+function OnDestroy()
+{
+	
 }
 function updateLocation()
 {
+	#if !UNITY_EDITOR && UNITY_ANDROID
 	if(androidPlugin != null)
 	{
-		lastLocation = androidPlugin.Call.<AndroidJavaObject>("getLocation");
+	try
+	{
+		var lastLocation:AndroidJavaObject = androidPlugin.Call.<AndroidJavaObject>("getLocation");
+		latitude = lastLocation.Call.<double>("getLatitude");
+		longitude = lastLocation.Call.<double>("getLongitude");
+	}
+	catch(e)
+	{
+		text.text = e.Message;
+	}
+		//altitude = lastLocation.Call.<float>("getAltitude");
 		
 	}
+	#endif
 }
 function Start () {
 	#if !UNITY_EDITOR && UNITY_ANDROID
@@ -114,6 +141,7 @@ function Start () {
 			if(pluginClass != null)
 			{
 				androidPlugin = pluginClass.CallStatic.<AndroidJavaObject>("instance");
+				
 				activityContext.Call("runOnUiThread", new AndroidJavaRunnable(setContext));
 			}
 		}
@@ -158,7 +186,7 @@ function Start () {
     }
 
     // Service didn't initialize in 30 seconds
-    if (maxWait < 1 && false) {
+    if (maxWait < 1) {
     	print("Unable to initialize location services.\nPlease check your location settings and restart the App");
 		status="Unable to initialize location services.\nPlease check your location settings\n and restart the App";
 		yield WaitForSeconds(4);
@@ -167,7 +195,7 @@ function Start () {
     }
 
     // Connection has failed
-    if (false && Input.location.status == LocationServiceStatus.Failed) {
+    if ( Input.location.status == LocationServiceStatus.Failed) {
     	print("Unable to determine your location.\nPlease check your location setting and restart this App");
 		status="Unable to determine your location.\nPlease check your location settings\n and restart this App";
 		yield WaitForSeconds(4);
@@ -176,20 +204,29 @@ function Start () {
     }
     
     // Access granted and location value could be retrieved
-    if(true) {
+    if(maxWait >= 0) {
     	print("GPS Fix established. Setting position..");
 		status="GPS Fix established!\n Setting position ...";
         if(!simGPS){
         	//Wait in order to find enough satellites and increase GPS accuracy
         	yield WaitForSeconds(initTime);
         	//Set position
-        	loc  = Input.location.lastData;          
-        	iniRef.x = ((loc.longitude * 20037508.34 / 180)/100);
-   			iniRef.z = System.Math.Log(System.Math.Tan((90 + loc.latitude) * System.Math.PI / 360)) / (System.Math.PI / 180);
+        	if(useNativeGps)
+        	{
+        		updateLocation();
+        	}
+        	else
+        	{
+        		loc  = Input.location.lastData;
+        		latitude = loc.latitude;
+        		longitude = loc.longitude;
+        	}          
+        	iniRef.x = ((longitude * 20037508.34 / 180)/100);
+   			iniRef.z = System.Math.Log(System.Math.Tan((90 + latitude) * System.Math.PI / 360)) / (System.Math.PI / 180);
   			iniRef.z = ((iniRef.z * 20037508.34 / 180)/100);  
   			iniRef.y = 0;
-  			fixLon=loc.longitude;
-    		fixLat=loc.latitude; 
+  			fixLon=longitude;
+    		fixLat=latitude; 
     		//Successful GPS fix
     		gpsFix=true;
     		//Update Map for the current location
@@ -220,11 +257,20 @@ InvokeRepeating("MyPosition",1,updateRate);
 function MyPosition(){
 	if(gpsFix){
 		if(!simGPS){
-			loc  = Input.location.lastData;
-			newUserPos.x = ((loc.longitude * 20037508.34 / 180)/100)-iniRef.x;
-			newUserPos.z = System.Math.Log(System.Math.Tan((90 + loc.latitude) * System.Math.PI / 360)) / (System.Math.PI / 180);
+			if(useNativeGps)
+        	{
+        		updateLocation();
+        	}
+        	else
+        	{
+        		loc  = Input.location.lastData;
+        		latitude = loc.latitude;
+        		longitude = loc.longitude;
+        	} 
+			newUserPos.x = ((longitude * 20037508.34 / 180)/100)-iniRef.x;
+			newUserPos.z = System.Math.Log(System.Math.Tan((90 + latitude) * System.Math.PI / 360)) / (System.Math.PI / 180);
 	    	newUserPos.z = ((newUserPos.z * 20037508.34 / 180)/100)-iniRef.z;  
-	    	fixLon=loc.longitude;
+	    	fixLon=longitude;
 	    	fixLat=loc.latitude; 
 		}
 		else{
@@ -322,7 +368,16 @@ function MapPosition(){
    
 	www=null;
 	//Get last available location data
-	loc  = Input.location.lastData;
+	if(useNativeGps)
+    {
+    	updateLocation();
+    }
+    else
+    {
+    	loc  = Input.location.lastData;
+        latitude = loc.latitude;
+        longitude = loc.longitude;
+    } 
 	//Make player invisible while updating map
 	user.gameObject.renderer.enabled=false;
 	
@@ -347,9 +402,9 @@ function MapPosition(){
 		
 		//ATENTTION: If you want to implement maps from a different tiles provider, modify the following url accordingly  to create a valid request
 		//url="http://open.mapquestapi.com/staticmap/v4/getmap?key="+key+"&size=1280,1280&zoom="+zoom+"&type="+maptype[index]+"&center="+loc.latitude+","+loc.longitude;
-		url = "http://maps.googleapis.com/maps/api/staticmap?key="+key+"&size=1280x1280&zoom="+zoom+"&center="+loc.latitude+","+loc.longitude;
-		tempLat = loc.latitude; 
-		tempLon = loc.longitude;
+		url = "http://maps.googleapis.com/maps/api/staticmap?key="+key+"&size=1280x1280&zoom="+zoom+"&center="+latitude+","+longitude;
+		tempLat = latitude; 
+		tempLon = longitude;
 	}
 
 	//Proceed with download if an Wireless internet connection is available 
@@ -389,7 +444,6 @@ function getRoute(origin : String,  destination: String, travelMode :String){
 	
 	// Start a download of the given URL
 	var wwwLocal = new WWW(urlLocal); 
-	Debug.LogWarning(urlLocal);
 	pointsParams = "";
 	// Wait for download to complete
 	download = (wwwLocal.progress);
@@ -418,9 +472,7 @@ function getRoute(origin : String,  destination: String, travelMode :String){
 		yield WaitForSeconds (1);
 	}
 	var result = JSON.Parse(wwwLocal.text);
-	Debug.LogWarning(result["status"].Value);
 	var routes = result["routes"];
-	
 	for(var route : JSONNode in routes)
 	{
 		var legs = route["legs"];
@@ -442,23 +494,21 @@ function getRoute(origin : String,  destination: String, travelMode :String){
 			}
 			break;
 		}
-		Debug.LogWarning(route["summary"]);
 		break;
 	}
 	if(pointsParams.length > 0)
 	{
-		Debug.LogWarning(pointsParams.Substring(0, pointsParams.length - 1));
 		pointsParams = pointsParams.Substring(0, pointsParams.length - 1);
 	}
-	getPlaces("bar", origin, 200.0);
+	getPlaces(placesName, origin, placesRadius);
 }
 function getPlaces(name : String,  location: String, radius :float){
+	name=name.Replace(" ", "+");
+	
 	var urlPlaces:String = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
 	urlPlaces = urlPlaces +"name="+name+"&location="+location+"&radius="+radius+"&key="+key;
-	
 	// Start a download of the given URL
 	var wwwLocal = new WWW(urlPlaces); 
-	Debug.LogWarning(urlPlaces);
 	markers = "";
 	// Wait for download to complete
 	download = (wwwLocal.progress);
@@ -489,19 +539,29 @@ function getPlaces(name : String,  location: String, radius :float){
 	var complete = JSON.Parse(wwwLocal.text);
 	var results = complete["results"];
 	var i : int = 1;
+	for(var marker:GameObject in markerObjects)
+	{
+		GameObject.Destroy(marker);
+	}
+	markerObjects.Clear();
 	for(var result : JSONNode in results)
 	{
 		var latitude = result["geometry"]["location"]["lat"].Value;
 		var longitude = result["geometry"]["location"]["lng"].Value;
 		markers += "markers=color:blue%7Clabel="+i+"%7C"+latitude+","+longitude+"&";
+		var marker = ObjectPool.instance.GetObjectForType(markerPrefab.name);//GameObject.Instantiate(markerPrefab, Vector3(0,0,0), Quaternion.identity);
+		var setGeolocation : SetGeolocation = marker.GetComponent(SetGeolocation); 
+		setGeolocation.lat = float.Parse(latitude);
+		setGeolocation.lon = float.Parse(longitude);
+		setGeolocation.GeoLocation();
+		setGeolocation.SetTag(result["name"]);
+		markerObjects.Add(marker);
 		i++;
 	}
 	if(markers.length > 0)
 	{
-		Debug.LogWarning(markers.Substring(0, markers.length - 1));
 		markers = markers.Substring(0, markers.length - 1);
 	}
-	Debug.LogWarning(markers);
 	Online();
 }
 //Re-position map and camera using updated data
@@ -516,10 +576,10 @@ function ReSet(){
 
 
 //ONLINE MAP DOWNLOAD
-function Online(){
-	
-		url = url+"&path=color:0xff0000ff|weight:3|"+pointsParams+"&"+markers;
-	
+function Online(){	
+	url = url+"&path=color:0xff0000ff|weight:3|"+pointsParams;//+"&"+markers;	
+//	url = "https://www.google.com/maps/embed/v1/place?key="+key +"&q=Space+Needle,Seattle+WA";
+	Debug.LogWarning(url);
 	// Start a download of the given URL
 	www = new WWW(url); 
 	// Wait for download to complete
@@ -557,7 +617,6 @@ function Online(){
 	user.gameObject.renderer.enabled=true;
 	ready=true;
 	mapping=false;
-	
 }
 
 //USING OFFLINE BACKGROUND TEXTURE
@@ -606,15 +665,13 @@ function ReScale(){
 }
 
 function Update(){
-
     //User pointer speed
     if(realSpeed){
 		speed = userSpeed*0.05;
 	}
 	else{
 		speed = speed=userSpeed*10000/(Mathf.Pow(2,zoom)*1.0);
-	}
-	
+	}	
 	//3D-2D View Camera Toggle 
 	if(triDView){
 		cam.parent=user;
@@ -623,9 +680,7 @@ function Update(){
 	}
 	else{
 		cam.parent=null;		
-	}	
-	
-    
+	}	   
     if(ready){	
     	if(!simGPS){
     		//Smoothly move pointer to updated position and update rotation once the map has been successfully downloaded

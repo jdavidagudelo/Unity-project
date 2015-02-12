@@ -8,6 +8,7 @@ var orientation : float;
 var scaleX : float;
 var scaleY : float;
 var scaleZ : float;
+public var textMesh: TextMesh;
 private var initX : float;
 private var initZ : float;
 private var gps : MapNav;
@@ -20,7 +21,10 @@ function Awake(){
 	gps = GameObject.FindGameObjectWithTag("GameController").GetComponent(MapNav);
 	gpsFix = gps.gpsFix;
 }
-
+function SetTag(tag : String)
+{
+	textMesh.text = tag;
+}
 function Start () {
 	//Wait until the gps sensor provides a valid location.
 	while(!gpsFix){

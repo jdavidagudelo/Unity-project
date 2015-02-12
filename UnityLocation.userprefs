@@ -1,10 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MAPNAV\Scripts\MapNav.js">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\Example\Assets\TicTacToe\GameLogic\Util.cs">
     <Files>
-      <File FileName="Assets\MAPNAV\Scripts\MapNav.js" Line="38" Column="26" />
-      <File FileName="Assets\MAPNAV\Scripts\SimpleRoute.js" Line="9" Column="43" />
-      <File FileName="Assets\Plugins\SimpleJSON.cs" Line="550" Column="31" />
+      <File FileName="..\Example\Assets\TicTacToe\GameLogic\Util.cs" Line="23" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
