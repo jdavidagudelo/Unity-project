@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\Example\Assets\TicTacToe\GameLogic\Util.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Menu.cs">
     <Files>
-      <File FileName="..\Example\Assets\TicTacToe\GameLogic\Util.cs" Line="23" Column="1" />
+      <File FileName="Assets\Scripts\Menu.cs" Line="17" Column="3" />
+      <File FileName="..\Example\Assets\GooglePlayGames\GameInfo.cs" Line="37" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

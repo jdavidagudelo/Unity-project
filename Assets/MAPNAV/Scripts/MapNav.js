@@ -460,9 +460,9 @@ function getRoute(origin : String,  destination: String, travelMode :String){
 		//use the status string variable to print messages to your own user interface (GUIText, etc.)
 		status="Updating map 100 %\nMap Ready!";
 		yield WaitForSeconds (0.5);
-		var tmp : Texture2D;
-		tmp = new Texture2D(1280,1280,TextureFormat.RGB24,false);
-		wwwLocal.LoadImageIntoTexture(tmp); 	
+		//var tmp : Texture2D;
+		//tmp = new Texture2D(1280,1280,TextureFormat.RGB24,false);
+		//wwwLocal.LoadImageIntoTexture(tmp); 	
 	}
 	//Download Error. Switching to offline mode
 	else{
