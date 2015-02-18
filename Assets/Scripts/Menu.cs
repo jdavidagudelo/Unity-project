@@ -11,6 +11,10 @@ public class Menu : MonoBehaviour {
 	void Update () {
 	
 	}
+	public void loadMenuProfile()
+	{
+		Application.LoadLevel ("Profile");	
+	}
 	public void loadMenuInicio()
 	{
 		Application.LoadLevel ("Inicio");

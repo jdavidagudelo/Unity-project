@@ -77,8 +77,13 @@
      <Compile Include="Assets\Pedometer.cs" />
      <Compile Include="Assets\PedometerAdvanced.cs" />
      <Compile Include="Assets\RunActivity.cs" />
+     <Compile Include="Assets\Scripts\DataStore.cs" />
      <Compile Include="Assets\Scripts\Menu.cs" />
      <Compile Include="Assets\Scripts\MenuInicio.cs" />
+     <Compile Include="Assets\Scripts\MenuProfile.cs" />
+     <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
+     <Compile Include="Assets\Scripts\UserData.cs" />
+     <Compile Include="Assets\Scripts\Validator.cs" />
      <Compile Include="Assets\SpeedAndDistance.cs" />
      <None Include="Assets\Plugins\Android\res\values\styles.xml" />
      <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_usersettingsfragment.xml" />
