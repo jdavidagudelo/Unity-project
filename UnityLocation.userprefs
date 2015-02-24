@@ -1,13 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MenuProfile.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GooglePlayServices.cs">
     <Files>
-      <File FileName="Assets\Scripts\UserData.cs" Line="14" Column="1" />
-      <File FileName="Assets\Scripts\Menu.cs" Line="1" Column="1" />
-      <File FileName="..\Example\Assets\GooglePlayGames\GameInfo.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MenuInicio.cs" Line="3" Column="38" />
-      <File FileName="Assets\Scripts\MenuProfile.cs" Line="67" Column="1" />
-      <File FileName="Assets\Scripts\DataStore.cs" Line="25" Column="3" />
+      <File FileName="Assets\Scripts\GooglePlayServices.cs" Line="64" Column="53" />
+      <File FileName="Assets\AndroidPlugin.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -23,7 +23,12 @@ public class MenuProfile : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			Application.LoadLevel ("Simple Menu");
+		}
+		if (Input.GetKeyDown (KeyCode.Menu)) {
+			Application.LoadLevel ("Simple Menu");
+		}
 	}
 	public void loadMainMenu()
 	{

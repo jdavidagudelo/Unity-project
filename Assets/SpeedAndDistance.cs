@@ -12,10 +12,12 @@ public class SpeedAndDistance : MonoBehaviour {
 	 */
 	[HideInInspector]
 	public float accumulatedDistance = 0.0f;
+	public Text textDistance;
+	public Text textTime;
+
 	/**
 	 * Tiempo acumulado del recorrido en segundos.
 	 */
-	[HideInInspector]
 	public float runningTime = 0.0f;
 	private string value = "";
 	/**
@@ -45,6 +47,7 @@ public class SpeedAndDistance : MonoBehaviour {
 	private const float R = 6371f*1000f;
 	//ultima localizacion 
 	private LocationInfo lastLocation;
+	public bool running = false;
 	// Use this for initialization
 	void Start() {
 		currentTime = Time.time;
@@ -106,11 +109,12 @@ public class SpeedAndDistance : MonoBehaviour {
 		} else {
 			text.text = "Location: " + Input.location.lastData.latitude.ToString() + " " + Input.location.lastData.longitude.ToString() + " " + Input.location.lastData.altitude.ToString() + " " + Input.location.lastData.horizontalAccuracy + " " + runningTime+" secs ";
 			//se acumula la distancia recorrida
-			if(initialized)
+			if(initialized && running)
 			{
 				accumulatedDistance += Distance (lastLocation, Input.location.lastData);
-				text.text += " Distance = "+accumulatedDistance+" meters. Speed: "+getKmH(Speed())+" km/h";
+				text.text += " Distance = " + accumulatedDistance + " meters. Speed: "+getKmH(Speed())+" km/h";
 			}
+			textDistance.text = ""+accumulatedDistance+" KM";
 			lastLocation = Input.location.lastData;
 			if(!initialized)
 			{
@@ -148,16 +152,31 @@ public class SpeedAndDistance : MonoBehaviour {
 	void FixedUpdate()
 	{
 		//se contabiliza el tiempo desde la ultima actualizacion
-		runningTime += Time.deltaTime;
+		if (running) {
+			runningTime += Time.deltaTime;
+		}
 		if (Time.time - currentTime >= updateInterval) {
 			//Tiempo de la ultima actualizacion
 			currentTime = Time.time;
 			//actualiza la ubicacion actual a partir del dispositivo
 			//en una corutina que corre en un thread alternativo
 			StartCoroutine(getLocation());
-
 		}
-
+		textTime.text = "" +getValue ((int)(runningTime/3600))+":"+ getValue((int)(runningTime/60)%60)+":"+getValue ((int)(runningTime%60));
 	}
-
+	public void startActivity()
+	{
+		running = true;
+	}
+	public void stopActivity()
+	{
+		running = false;
+	}
+	private string getValue(int value)
+	{
+		if (value < 10) {
+			return "0"+value;
+		}
+		return ""+value;
+	}
 }

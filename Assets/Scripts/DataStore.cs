@@ -29,4 +29,23 @@ public class DataStore : MonoBehaviour {
 		file.Close ();
 		return data;
 	}
+	public static void SaveLastActivity(ActivityInfo activity)
+	{
+		BinaryFormatter bf = new BinaryFormatter ();
+		FileStream file = File.Create (Application.persistentDataPath+"/lastActivityInfo.dat");
+		bf.Serialize (file, activity);
+		file.Close ();
+	}
+	public static ActivityInfo LoadLastActivity()
+	{
+		BinaryFormatter bf = new BinaryFormatter ();
+		if(File.Exists(Application.persistentDataPath + "/lastActivityInfo.dat"))
+		{
+			FileStream file = File.Open (Application.persistentDataPath + "/lastActivityInfo.dat", FileMode.Open);
+			ActivityInfo info = (ActivityInfo)bf.Deserialize (file);
+			file.Close ();
+			return info;
+		}
+		return null;
+	}
 }
