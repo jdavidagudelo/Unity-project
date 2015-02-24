@@ -156,7 +156,7 @@
      <None Include="Assets\Plugins\Android\google-play-services_lib\lint.xml" />
      <None Include="Assets\Plugins\Android\res\values-eu-rES\common_strings.xml" />
      <None Include="Assets\Plugins\Android\res\values-cs\common_strings.xml" />
-     <None Include="Assets\ReadMe.txt" />
+     <None Include="Assets\Scripts\ReadMe.txt" />
      <None Include="Assets\Plugins\Android\res\values-sk\common_strings.xml" />
      <None Include="Assets\Plugins\Android\res\values-sl\common_strings.xml" />
      <None Include="Assets\Plugins\Android\res\color\wallet_primary_text_holo_light.xml" />

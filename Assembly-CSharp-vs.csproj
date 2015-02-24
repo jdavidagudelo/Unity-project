@@ -46,32 +46,32 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\ActivityButton.cs" />
-     <Compile Include="Assets\ActivityList.cs" />
-     <Compile Include="Assets\AndroidPlugin.cs" />
-     <Compile Include="Assets\CallJavaCode.cs" />
-     <Compile Include="Assets\CreateScrollList.cs" />
-     <Compile Include="Assets\GoogleAPIExample.cs" />
      <Compile Include="Assets\JSONObject\JSONObject.cs" />
      <Compile Include="Assets\JSONObject\JSONTemplates.cs" />
      <Compile Include="Assets\JSONObject\VectorTemplates.cs" />
-     <Compile Include="Assets\LoadList.cs" />
      <Compile Include="Assets\MAPNAV\Scripts\ObjectPool.cs" />
-     <Compile Include="Assets\Pedometer.cs" />
-     <Compile Include="Assets\PedometerAdvanced.cs" />
-     <Compile Include="Assets\RunActivity.cs" />
+     <Compile Include="Assets\Scripts\ActivityButton.cs" />
      <Compile Include="Assets\Scripts\ActivityInfo.cs" />
+     <Compile Include="Assets\Scripts\ActivityList.cs" />
+     <Compile Include="Assets\Scripts\AndroidPlugin.cs" />
+     <Compile Include="Assets\Scripts\CallJavaCode.cs" />
+     <Compile Include="Assets\Scripts\CreateScrollList.cs" />
      <Compile Include="Assets\Scripts\DataStore.cs" />
+     <Compile Include="Assets\Scripts\GoogleAPIExample.cs" />
      <Compile Include="Assets\Scripts\GooglePlayServices.cs" />
      <Compile Include="Assets\Scripts\GooglePlayServicesPlugin.cs" />
+     <Compile Include="Assets\Scripts\LoadList.cs" />
      <Compile Include="Assets\Scripts\Menu.cs" />
      <Compile Include="Assets\Scripts\MenuInicio.cs" />
      <Compile Include="Assets\Scripts\MenuProfile.cs" />
      <Compile Include="Assets\Scripts\MenuRunning.cs" />
      <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
+     <Compile Include="Assets\Scripts\Pedometer.cs" />
+     <Compile Include="Assets\Scripts\PedometerAdvanced.cs" />
+     <Compile Include="Assets\Scripts\RunActivity.cs" />
+     <Compile Include="Assets\Scripts\SpeedAndDistance.cs" />
      <Compile Include="Assets\Scripts\UserData.cs" />
      <Compile Include="Assets\Scripts\Validator.cs" />
-     <Compile Include="Assets\SpeedAndDistance.cs" />
      <None Include="Assets\Plugins\Android\res\values\styles.xml" />
      <None Include="Assets\Plugins\Android\res\values\wallet_attrs.xml" />
      <None Include="Assets\Plugins\Android\res\values-am\common_strings.xml" />
@@ -178,7 +178,7 @@
      <None Include="Assets\Plugins\Android\google-play-services_lib\lint.xml" />
      <None Include="Assets\Plugins\Android\res\values-eu-rES\common_strings.xml" />
      <None Include="Assets\Plugins\Android\res\values-cs\common_strings.xml" />
-     <None Include="Assets\ReadMe.txt" />
+     <None Include="Assets\Scripts\ReadMe.txt" />
      <None Include="Assets\Plugins\Android\res\values-sk\common_strings.xml" />
      <None Include="Assets\Plugins\Android\res\values-sl\common_strings.xml" />
      <None Include="Assets\Plugins\Android\res\color\wallet_primary_text_holo_light.xml" />
