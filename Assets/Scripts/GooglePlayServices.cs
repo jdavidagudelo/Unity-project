@@ -15,7 +15,7 @@ public class GooglePlayServices : MonoBehaviour {
 	public Button googleInbox;
 	public Button googleGifts;
 	public Button googleRequests;
-	private string savedData;
+	private string savedData = null;
 	#if UNITY_ANDROID
 	private static AndroidJavaObject androidPlugin = null;
 	private static AndroidJavaObject activityContext = null;
@@ -54,14 +54,13 @@ public class GooglePlayServices : MonoBehaviour {
 				{
 					activityContext = activityClass.GetStatic<AndroidJavaObject>("currentActivity");
 				}
-				using(AndroidJavaClass pluginClass = new AndroidJavaClass("udea.telesalud.artica.com.plugin.GooglePlayServicesPlugin"))
+				using(AndroidJavaClass pluginClass = new AndroidJavaClass("com.artica.juegohabitos.androidplugins.GooglePlayServicesPlugin"))
 				{
 					if(pluginClass != null)
 					{
 						androidPlugin = pluginClass.CallStatic<AndroidJavaObject>("instance");
 						activityContext.Call("runOnUiThread", new AndroidJavaRunnable(()=>{
 							androidPlugin.Call("setContext", activityContext);
-							savedGamesUpdate ("This is my stupid test", "SnapShot1", true);
 						}));
 					}
 				}
@@ -322,6 +321,12 @@ public class GooglePlayServices : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (savedData == null) {
+			
+			savedGamesUpdate ("This is my stupid test", "SnapShot1", true);
+			savedGamesLoad ("SnapShot1");
+		}
+		loadSavedData ();
 		if (Input.GetKeyDown (KeyCode.Escape)) {
 			Application.LoadLevel ("Inicio");
 		}

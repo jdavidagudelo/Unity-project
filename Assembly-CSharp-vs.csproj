@@ -65,6 +65,7 @@
      <Compile Include="Assets\Scripts\MenuInicio.cs" />
      <Compile Include="Assets\Scripts\MenuProfile.cs" />
      <Compile Include="Assets\Scripts\MenuRunning.cs" />
+     <Compile Include="Assets\Scripts\MenuStatistics.cs" />
      <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
      <Compile Include="Assets\Scripts\Pedometer.cs" />
      <Compile Include="Assets\Scripts\PedometerAdvanced.cs" />

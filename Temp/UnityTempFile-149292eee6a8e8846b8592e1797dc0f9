@@ -60,6 +60,7 @@ Assets/Scripts/Menu.cs
 Assets/Scripts/MenuInicio.cs
 Assets/Scripts/MenuProfile.cs
 Assets/Scripts/MenuRunning.cs
+Assets/Scripts/MenuStatistics.cs
 Assets/Scripts/NewBehaviourScript.cs
 Assets/Scripts/Pedometer.cs
 Assets/Scripts/PedometerAdvanced.cs

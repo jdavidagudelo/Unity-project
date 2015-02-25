@@ -6,7 +6,6 @@ public class CreateScrollList : MonoBehaviour {
 	public ActivityList activityList;
 	public Transform contentPanel;
 	public bool test;
-	public AndroidPlugin androidPlugin;
 	// Use this for initialization
 	void Start () {
 		populateList ();
@@ -18,7 +17,7 @@ public class CreateScrollList : MonoBehaviour {
 			ActivityButton button = newButton.GetComponent<ActivityButton>();
 			button.dateText.text = item.startDate.ToString();
 			button.distanceText.text = item.distance.ToString();
-			button.button.onClick.AddListener( ()=>{androidPlugin.showSimpleMessage("This activity occurs on "+item.startDate.ToString());});
+			//button.button.onClick.AddListener( ()=>{androidPlugin.showSimpleMessage("This activity occurs on "+item.startDate.ToString());});
 			newButton.transform.SetParent(contentPanel);
 		}
 	}

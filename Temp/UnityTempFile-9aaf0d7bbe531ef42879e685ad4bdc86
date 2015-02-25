@@ -1,12 +1,12 @@
 -debug
 -target:library
 -nowarn:0169
--out:Temp/Assembly-CSharp-firstpass.dll
--r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll"
+-out:Temp/Assembly-CSharp.dll
+-r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/AndroidPlayer/Managed/UnityEngine.dll"
+-r:Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll
 -r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll"
 -r:Assets/Plugins/GameThriveSDK.dll
 -r:Assets/Plugins/ICSharpCode.SharpZipLib.dll
--r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll"
 -define:UNITY_4_6_0
 -define:UNITY_4_6
 -define:UNITY_ANDROID
@@ -37,16 +37,32 @@
 -define:ENABLE_AUDIO
 -define:ENABLE_NAVMESH_CARVING
 -define:ENABLE_SINGLE_INSTANCE_BUILD_SETTING
--define:ENABLE_PROFILER
--define:UNITY_EDITOR
--define:UNITY_EDITOR_WIN
-Assets/Plugins/GameThrive/Example/GameControllerExample.cs
-Assets/Plugins/GameThrive/GameThrive.cs
-Assets/Plugins/GameThrive/GameThriveAndroid.cs
-Assets/Plugins/GameThrive/GameThriveIOS.cs
-Assets/Plugins/GameThrive/GameThrivePlatform.cs
-Assets/Plugins/GameThrive/GameThriveWP.cs
-Assets/Plugins/GameThrive/MiniJSON.cs
-Assets/Plugins/SimpleJSON.cs
+Assets/JSONObject/JSONObject.cs
+Assets/JSONObject/JSONTemplates.cs
+Assets/JSONObject/VectorTemplates.cs
+Assets/MAPNAV/Scripts/ObjectPool.cs
+Assets/Scripts/ActivityButton.cs
+Assets/Scripts/ActivityInfo.cs
+Assets/Scripts/ActivityList.cs
+Assets/Scripts/AndroidPlugin.cs
+Assets/Scripts/CallJavaCode.cs
+Assets/Scripts/CreateScrollList.cs
+Assets/Scripts/DataStore.cs
+Assets/Scripts/GoogleAPIExample.cs
+Assets/Scripts/GooglePlayServices.cs
+Assets/Scripts/GooglePlayServicesPlugin.cs
+Assets/Scripts/LoadList.cs
+Assets/Scripts/Menu.cs
+Assets/Scripts/MenuInicio.cs
+Assets/Scripts/MenuProfile.cs
+Assets/Scripts/MenuRunning.cs
+Assets/Scripts/MenuStatistics.cs
+Assets/Scripts/NewBehaviourScript.cs
+Assets/Scripts/Pedometer.cs
+Assets/Scripts/PedometerAdvanced.cs
+Assets/Scripts/RunActivity.cs
+Assets/Scripts/SpeedAndDistance.cs
+Assets/Scripts/UserData.cs
+Assets/Scripts/Validator.cs
 -r:"C:/Program Files/Unity/Editor/Data/Mono\lib/mono/unity\System.Runtime.Serialization.dll"
 -r:"C:/Program Files/Unity/Editor/Data/Mono\lib/mono/unity\System.Xml.Linq.dll"
