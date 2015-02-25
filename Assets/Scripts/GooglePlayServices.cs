@@ -15,6 +15,7 @@ public class GooglePlayServices : MonoBehaviour {
 	public Button googleInbox;
 	public Button googleGifts;
 	public Button googleRequests;
+	public Button googleSavedGames;
 	private string savedData = null;
 	#if UNITY_ANDROID
 	private static AndroidJavaObject androidPlugin = null;
@@ -46,6 +47,9 @@ public class GooglePlayServices : MonoBehaviour {
 		if (googleRequests != null) {
 			googleRequests.gameObject.SetActive(false);
 		} 
+		if (googleSavedGames != null) {
+			googleSavedGames.gameObject.SetActive(false);	
+		}
 		#if UNITY_ANDROID && !UNITY_EDITOR
 		staticText = text;
 		try{
@@ -79,6 +83,27 @@ public class GooglePlayServices : MonoBehaviour {
 	private static void HandleNotification(string message, Dictionary<string, object> additionalData, bool isActive) {
 		print("GameControllerExample:HandleNotification");
 		print(message);
+	}
+	public void showSavedGames()
+	{
+		#if UNITY_ANDROID && !UNITY_EDITOR
+		activityContext.Call("runOnUiThread", new AndroidJavaRunnable(
+			()=> 
+			{
+			try{
+				androidPlugin.Call("showSelectUi");
+
+			}
+			catch(UnityException ex){
+				staticText.text = ex.Message.ToString();
+			}
+			catch(AndroidJavaException ex)
+			{
+				staticText.text = ex.Message.ToString();
+			}
+			
+		}));
+		#endif
 	}
 	public void loadSavedData()
 	{
@@ -277,6 +302,7 @@ public class GooglePlayServices : MonoBehaviour {
 				googleInbox.gameObject.SetActive (false);
 				googleRequests.gameObject.SetActive (false);
 				googleGifts.gameObject.SetActive (false);
+				googleSavedGames.gameObject.SetActive(false);
 				googleLogin.gameObject.SetActive(true);
 			}
 			catch(UnityException ex){
@@ -305,6 +331,7 @@ public class GooglePlayServices : MonoBehaviour {
 				googleInbox.gameObject.SetActive (true);
 				googleRequests.gameObject.SetActive (true);
 				googleGifts.gameObject.SetActive (true);
+				googleSavedGames.gameObject.SetActive(true);
 				googleLogin.gameObject.SetActive(false);
 			}
 			catch(UnityException ex){
@@ -321,12 +348,6 @@ public class GooglePlayServices : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (savedData == null) {
-			
-			savedGamesUpdate ("This is my stupid test", "SnapShot1", true);
-			savedGamesLoad ("SnapShot1");
-		}
-		loadSavedData ();
 		if (Input.GetKeyDown (KeyCode.Escape)) {
 			Application.LoadLevel ("Inicio");
 		}
